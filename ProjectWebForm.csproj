@@ -69,14 +69,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="aspx\board.aspx" />
+    <Content Include="aspx\company.aspx" />
+    <Content Include="aspx\list.aspx" />
+    <Content Include="aspx\login.aspx" />
+    <Content Include="aspx\main.aspx" />
     <Content Include="assets\img\bg-masthead.jpg" />
     <Content Include="assets\img\bg-signup.jpg" />
     <Content Include="assets\img\demo-image-01.jpg" />
     <Content Include="assets\img\demo-image-02.jpg" />
     <Content Include="assets\img\favicon.ico" />
     <Content Include="assets\img\ipad.png" />
-    <Content Include="Board.aspx" />
-    <Content Include="Company.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -98,12 +101,11 @@
     <Content Include="Error\Error.aspx" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
+    <Content Include="images\code-944499_1280.jpg" />
     <Content Include="js\bootstrap.bundle.js" />
     <Content Include="js\bootstrap.bundle.min.js" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
-    <Content Include="main2.aspx" />
-    <Content Include="main3.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -137,7 +139,7 @@
     <Content Include="css\bootstrap-reboot.min.css.map" />
     <Content Include="css\bootstrap.css.map" />
     <Content Include="css\bootstrap.min.css.map" />
-    <Content Include="master.Master" />
+    <Content Include="aspx\site.Master" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -220,7 +222,6 @@
     <Content Include="images\bg.jpg" />
     <Content Include="js\jquery-3.3.1.min.js" />
     <Content Include="js\scripts.js" />
-    <Content Include="List.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Loginfail.aspx" />
     <Content Include="LoginSuccess.aspx" />
@@ -232,21 +233,49 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Board.aspx.cs">
-      <DependentUpon>Board.aspx</DependentUpon>
+    <Compile Include="aspx\board.aspx.cs">
+      <DependentUpon>board.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Board.aspx.designer.cs">
-      <DependentUpon>Board.aspx</DependentUpon>
+    <Compile Include="aspx\board.aspx.designer.cs">
+      <DependentUpon>board.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="aspx\company.aspx.cs">
+      <DependentUpon>company.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="aspx\company.aspx.designer.cs">
+      <DependentUpon>company.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="aspx\list.aspx.cs">
+      <DependentUpon>list.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="aspx\list.aspx.designer.cs">
+      <DependentUpon>list.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="aspx\login.aspx.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="aspx\login.aspx.designer.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="aspx\main.aspx.cs">
+      <DependentUpon>main.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="aspx\main.aspx.designer.cs">
+      <DependentUpon>main.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="aspx\site.Master.cs">
+      <DependentUpon>site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="aspx\site.Master.designer.cs">
+      <DependentUpon>site.Master</DependentUpon>
     </Compile>
     <Compile Include="Commons.cs" />
-    <Compile Include="Company.aspx.cs">
-      <DependentUpon>Company.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Company.aspx.designer.cs">
-      <DependentUpon>Company.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Error\Error.aspx.cs">
       <DependentUpon>Error.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -256,26 +285,6 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="main2.aspx.cs">
-      <DependentUpon>main2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="main2.aspx.designer.cs">
-      <DependentUpon>main2.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="main3.aspx.cs">
-      <DependentUpon>main3.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="main3.aspx.designer.cs">
-      <DependentUpon>main3.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="master.Master.cs">
-      <DependentUpon>master.Master</DependentUpon>
-    </Compile>
-    <Compile Include="master.Master.designer.cs">
-      <DependentUpon>master.Master</DependentUpon>
     </Compile>
     <Compile Include="test\detail.aspx.cs">
       <DependentUpon>detail.aspx</DependentUpon>
@@ -290,13 +299,6 @@
     </Compile>
     <Compile Include="test\gridtest.aspx.designer.cs">
       <DependentUpon>gridtest.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="List.aspx.cs">
-      <DependentUpon>List.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="List.aspx.designer.cs">
-      <DependentUpon>List.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -386,7 +388,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="aspx\" />
     <Folder Include="Dates\" />
     <Folder Include="Models\" />
   </ItemGroup>

@@ -7,11 +7,11 @@
 // </자동 생성됨>
 //------------------------------------------------------------------------------
 
-namespace ProjectWebForm
+namespace ProjectWebForm.aspx
 {
 
 
-    public partial class main2
+    public partial class company
     {
     }
 }
