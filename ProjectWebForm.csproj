@@ -225,10 +225,7 @@
     <Content Include="images\bg.jpg" />
     <Content Include="js\jquery-3.3.1.min.js" />
     <Content Include="js\scripts.js" />
-    <Content Include="Login.aspx" />
-    <Content Include="Loginfail.aspx" />
     <Content Include="LoginSuccess.aspx" />
-    <Content Include="Main.aspx" />
     <Content Include="test\Listtest.aspx" />
     <Content Include="test\logintest.aspx" />
     <Content Include="test\exceluploadtest.aspx" />
@@ -303,33 +300,12 @@
     <Compile Include="test\gridtest.aspx.designer.cs">
       <DependentUpon>gridtest.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Loginfail.aspx.cs">
-      <DependentUpon>Loginfail.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Loginfail.aspx.designer.cs">
-      <DependentUpon>Loginfail.aspx</DependentUpon>
-    </Compile>
     <Compile Include="LoginSuccess.aspx.cs">
       <DependentUpon>LoginSuccess.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="LoginSuccess.aspx.designer.cs">
       <DependentUpon>LoginSuccess.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Main.aspx.cs">
-      <DependentUpon>Main.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Main.aspx.designer.cs">
-      <DependentUpon>Main.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="test\Listtest.aspx.cs">
