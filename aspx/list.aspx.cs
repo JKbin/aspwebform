@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace ProjectWebForm.aspx
 {
@@ -11,7 +14,36 @@ namespace ProjectWebForm.aspx
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Page.IsPostBack)
+            {
+                DisplayData();
 
+            }
         }
+
+        private void DisplayData()
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["connect"].ConnectionString);
+            string query = @"SELECT 
+                            REQ.BUY_REQ_NO,	COMP.COMP_NM,
+                            COMP.COMP_TEL, COMP.COMP_FAX,
+                            PLANT.PLANT_NM, USEER.USER_NM		 
+                            FROM MAT_REQ AS REQ
+                            INNER JOIN CIS_COMP AS COMP
+                            ON REQ.COMP_CD = COMP.COMP_CD
+                            INNER JOIN CIS_PLANT AS PLANT
+                            ON REQ.PLANT_CD = PLANT.PLANT_CD
+                            INNER JOIN CIS_USER AS USEER
+                            ON REQ.CREATION_BY = USEER.USER_ID ";
+
+            SqlCommand cmd = new SqlCommand(query, con);
+            SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            sda.Fill(ds, "MAT_REQ");
+            ctlBasicList.DataSource = ds;
+            ctlBasicList.DataBind();
+        }
+
+       
     }
 }

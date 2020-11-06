@@ -76,9 +76,12 @@
     <Content Include="aspx\main.aspx" />
     <Content Include="assets\img\bg-masthead.jpg" />
     <Content Include="assets\img\bg-signup.jpg" />
+    <Content Include="assets\img\bird-4848178_1920.jpg" />
+    <Content Include="assets\img\cat-5550033_1920.jpg" />
     <Content Include="assets\img\demo-image-01.jpg" />
     <Content Include="assets\img\demo-image-02.jpg" />
     <Content Include="assets\img\favicon.ico" />
+    <Content Include="assets\img\fox-5064828_1920.jpg" />
     <Content Include="assets\img\ipad.png" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
