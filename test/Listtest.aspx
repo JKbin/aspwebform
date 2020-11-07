@@ -29,6 +29,7 @@
                     <asp:BoundField HeaderText="요청자" DataField="USER_NM" />
                 </Columns>
             </asp:GridView>
+
             <asp:HyperLink ID="lnkWrite" runat="server" CssClass="btn btn-primary">글쓰기</asp:HyperLink>
             <asp:DropDownList ID="lstSearchField" runat="server">
                 <asp:ListItem Value="BUY_REQ_NO" Selected="True">요청번호</asp:ListItem>

@@ -70,6 +70,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="aspx\board.aspx" />
+    <Content Include="aspx\Board\List.aspx" />
+    <Content Include="aspx\Board\View.aspx" />
+    <Content Include="aspx\Board\Write.aspx" />
     <Content Include="aspx\company.aspx" />
     <Content Include="aspx\list.aspx" />
     <Content Include="aspx\login.aspx" />
@@ -229,6 +232,7 @@
     <Content Include="test\Listtest.aspx" />
     <Content Include="test\logintest.aspx" />
     <Content Include="test\exceluploadtest.aspx" />
+    <Content Include="test\test.aspx" />
     <Content Include="test\WebForm1.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -239,6 +243,27 @@
     </Compile>
     <Compile Include="aspx\board.aspx.designer.cs">
       <DependentUpon>board.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="aspx\Board\List.aspx.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="aspx\Board\List.aspx.designer.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="aspx\Board\View.aspx.cs">
+      <DependentUpon>View.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="aspx\Board\View.aspx.designer.cs">
+      <DependentUpon>View.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="aspx\Board\Write.aspx.cs">
+      <DependentUpon>Write.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="aspx\Board\Write.aspx.designer.cs">
+      <DependentUpon>Write.aspx</DependentUpon>
     </Compile>
     <Compile Include="aspx\company.aspx.cs">
       <DependentUpon>company.aspx</DependentUpon>
@@ -328,6 +353,12 @@
     </Compile>
     <Compile Include="test\exceluploadtest.aspx.designer.cs">
       <DependentUpon>exceluploadtest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="test\test.aspx.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="test\test.aspx.designer.cs">
+      <DependentUpon>test.aspx</DependentUpon>
     </Compile>
     <Compile Include="test\WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>

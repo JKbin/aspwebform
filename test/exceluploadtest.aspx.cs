@@ -23,6 +23,11 @@ namespace ProjectWebForm
             }
         }
 
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            //        base.VerifyRenderingInServerForm(control);
+        }
+
         protected void btnUpload_Click(object sender, EventArgs e)
         {
             // Get path from web.config file to upload
@@ -103,10 +108,7 @@ namespace ProjectWebForm
 
 
 
-        public override void VerifyRenderingInServerForm(Control control)
-        {
-            //        base.VerifyRenderingInServerForm(control);
-        }
+       
 
 
 

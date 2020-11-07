@@ -22,7 +22,6 @@
                 <asp:BoundField HeaderText="요청자" DataField="USER_NM" />
             </Columns>
         </asp:GridView>
-       
     </div>
 
     <section>
