@@ -10,7 +10,7 @@ using System.Configuration;
 
 namespace ProjectWebForm.aspx.Board
 {
-    public partial class View : System.Web.UI.Page
+    public partial class View : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -31,114 +31,34 @@ namespace ProjectWebForm.aspx.Board
 
         private void DisplayData()
         {
-            SqlConnection con = new SqlConnection(
-
-       ConfigurationManager.ConnectionStrings
-
-       ["connect"].ConnectionString);
-
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["connect"].ConnectionString);
             con.Open();
-
-
-
             SqlCommand cmd = new SqlCommand("ViewBoard", con);
-
             cmd.CommandType = CommandType.StoredProcedure;
-
-
-
+            
             // 파라미터 : List.aspx에서 넘겨온 쿼리스트링 값
-
             cmd.Parameters.AddWithValue("@Num", Request["Num"]);
-
-
-
             // 상세 보기 : DataReader
-
             SqlDataReader dr = cmd.ExecuteReader();
-
-
-
             // 바인딩 : 각각의 컨트롤
-
             while (dr.Read())
-
             {
-
-                this.lblNum.Text = dr["Num"].ToString();
-
-                this.lblName.Text = dr["Name"].ToString();
-
-                this.lblTitle.Text = dr["Title"].ToString();
-
-                this.lblPostDate.Text = dr["PostDate"].ToString();
-
-                // 인코딩에 따른 Content 출력 3가지 방법
-
-                // Write.aspx페이지에서 <%page 부분에 ValidateRequest="false" 추가
-
-                //string encoding = dr["Encoding"].ToString(); // Text/HTml/Mixed
-
-                //if (encoding == "Text") // 입력한 모양 그대로 출력
-
-                //{
-
-                //    this.lblContent.Text = dr["Content"].ToString()
-
-                //        .Replace("&", "&amp;").Replace("<", "&lt;")
-
-                //        .Replace(">", "&gt;")
-
-                //        .Replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;")
-
-                //        .Replace("\r\n", "<br />");
-
-                //}
-
-
-
-                //else if (encoding == "Mixed") // 태그는 실행하되, 엔터는 처리
-
-                //{
-
-                this.lblContent.Text = dr["Content"].ToString();
-
-                //        .Replace("\r\n", "<br />");
-
-                //}
-
-
-
-                //else // HTML로 변환해서 출력
-
-                //{
-
-                //    this.lblContent.Text = dr["Content"].ToString();
-
-                //}
-
-
-
-                //this.lblContent.Text = dr["Content"].ToString();
-
-
-
-                this.lblReadCount.Text = dr["ReadCount"].ToString();
-
-
+                lblNum.Text = dr["Num"].ToString();
+                lblName.Text = dr["Name"].ToString();
+                lblTitle.Text = dr["Title"].ToString();
+                lblPostDate.Text = dr["PostDate"].ToString();
+                lblContent.Text = dr["Content"].ToString();
+                lblReadCount.Text = dr["ReadCount"].ToString();
             }
 
             dr.Close();
-
             con.Close();
         }
 
         protected void btnModify_Click(object sender, EventArgs e)
         {
             string strUrl = String.Empty;
-
             strUrl = "./Modify.aspx?Num=" + Request["Num"];
-
             Response.Redirect(strUrl);
         }
 

@@ -11,7 +11,7 @@ namespace ProjectWebForm.aspx.Board
 {
 
 
-    public partial class View
+    public partial class Modify
     {
 
         /// <summary>
@@ -24,13 +24,13 @@ namespace ProjectWebForm.aspx.Board
         protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// lblTitle 컨트롤입니다.
+        /// lblNum 컨트롤입니다.
         /// </summary>
         /// <remarks>
         /// 자동 생성 필드입니다.
         /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하세요.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTitle;
+        protected global::System.Web.UI.WebControls.Label lblNum;
 
         /// <summary>
         /// Label2 컨트롤입니다.
@@ -42,13 +42,13 @@ namespace ProjectWebForm.aspx.Board
         protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
-        /// lblNum 컨트롤입니다.
+        /// txtName 컨트롤입니다.
         /// </summary>
         /// <remarks>
         /// 자동 생성 필드입니다.
         /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하세요.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNum;
+        protected global::System.Web.UI.WebControls.TextBox txtName;
 
         /// <summary>
         /// Label3 컨트롤입니다.
@@ -60,13 +60,13 @@ namespace ProjectWebForm.aspx.Board
         protected global::System.Web.UI.WebControls.Label Label3;
 
         /// <summary>
-        /// lblName 컨트롤입니다.
+        /// txtTitle 컨트롤입니다.
         /// </summary>
         /// <remarks>
         /// 자동 생성 필드입니다.
         /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하세요.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblName;
+        protected global::System.Web.UI.WebControls.TextBox txtTitle;
 
         /// <summary>
         /// Label4 컨트롤입니다.
@@ -78,13 +78,13 @@ namespace ProjectWebForm.aspx.Board
         protected global::System.Web.UI.WebControls.Label Label4;
 
         /// <summary>
-        /// lblPostDate 컨트롤입니다.
+        /// txtContent 컨트롤입니다.
         /// </summary>
         /// <remarks>
         /// 자동 생성 필드입니다.
         /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하세요.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPostDate;
+        protected global::System.Web.UI.WebControls.TextBox txtContent;
 
         /// <summary>
         /// Label5 컨트롤입니다.
@@ -96,31 +96,13 @@ namespace ProjectWebForm.aspx.Board
         protected global::System.Web.UI.WebControls.Label Label5;
 
         /// <summary>
-        /// lblReadCount 컨트롤입니다.
+        /// txtPassword 컨트롤입니다.
         /// </summary>
         /// <remarks>
         /// 자동 생성 필드입니다.
         /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하세요.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblReadCount;
-
-        /// <summary>
-        /// Label6 컨트롤입니다.
-        /// </summary>
-        /// <remarks>
-        /// 자동 생성 필드입니다.
-        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하세요.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label6;
-
-        /// <summary>
-        /// lblContent 컨트롤입니다.
-        /// </summary>
-        /// <remarks>
-        /// 자동 생성 필드입니다.
-        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하세요.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblContent;
+        protected global::System.Web.UI.WebControls.TextBox txtPassword;
 
         /// <summary>
         /// btnModify 컨트롤입니다.
@@ -132,15 +114,6 @@ namespace ProjectWebForm.aspx.Board
         protected global::System.Web.UI.WebControls.Button btnModify;
 
         /// <summary>
-        /// btnDelete 컨트롤입니다.
-        /// </summary>
-        /// <remarks>
-        /// 자동 생성 필드입니다.
-        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하세요.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDelete;
-
-        /// <summary>
         /// btnList 컨트롤입니다.
         /// </summary>
         /// <remarks>
@@ -148,5 +121,14 @@ namespace ProjectWebForm.aspx.Board
         /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하세요.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnList;
+
+        /// <summary>
+        /// lblError 컨트롤입니다.
+        /// </summary>
+        /// <remarks>
+        /// 자동 생성 필드입니다.
+        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하세요.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblError;
     }
 }

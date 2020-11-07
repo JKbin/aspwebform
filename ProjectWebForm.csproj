@@ -70,13 +70,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="aspx\board.aspx" />
+    <Content Include="aspx\Board\Delete.aspx" />
     <Content Include="aspx\Board\List.aspx" />
+    <Content Include="aspx\Board\Modify.aspx" />
     <Content Include="aspx\Board\View.aspx" />
     <Content Include="aspx\Board\Write.aspx" />
     <Content Include="aspx\company.aspx" />
     <Content Include="aspx\list.aspx" />
     <Content Include="aspx\login.aspx" />
     <Content Include="aspx\main.aspx" />
+    <Content Include="aspx\Board\Search.aspx" />
     <Content Include="assets\img\bg-masthead.jpg" />
     <Content Include="assets\img\bg-signup.jpg" />
     <Content Include="assets\img\bird-4848178_1920.jpg" />
@@ -244,12 +247,26 @@
     <Compile Include="aspx\board.aspx.designer.cs">
       <DependentUpon>board.aspx</DependentUpon>
     </Compile>
+    <Compile Include="aspx\Board\Delete.aspx.cs">
+      <DependentUpon>Delete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="aspx\Board\Delete.aspx.designer.cs">
+      <DependentUpon>Delete.aspx</DependentUpon>
+    </Compile>
     <Compile Include="aspx\Board\List.aspx.cs">
       <DependentUpon>List.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="aspx\Board\List.aspx.designer.cs">
       <DependentUpon>List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="aspx\Board\Modify.aspx.cs">
+      <DependentUpon>Modify.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="aspx\Board\Modify.aspx.designer.cs">
+      <DependentUpon>Modify.aspx</DependentUpon>
     </Compile>
     <Compile Include="aspx\Board\View.aspx.cs">
       <DependentUpon>View.aspx</DependentUpon>
@@ -292,6 +309,13 @@
     </Compile>
     <Compile Include="aspx\main.aspx.designer.cs">
       <DependentUpon>main.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="aspx\Board\Search.aspx.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="aspx\Board\Search.aspx.designer.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
     </Compile>
     <Compile Include="aspx\site.Master.cs">
       <DependentUpon>site.Master</DependentUpon>
