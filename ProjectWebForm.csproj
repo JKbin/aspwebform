@@ -77,6 +77,7 @@
     <Content Include="aspx\Board\Write.aspx" />
     <Content Include="aspx\company.aspx" />
     <Content Include="aspx\list.aspx" />
+    <Content Include="aspx\listtest1.aspx" />
     <Content Include="aspx\login.aspx" />
     <Content Include="aspx\main.aspx" />
     <Content Include="aspx\Board\Search.aspx" />
@@ -295,6 +296,13 @@
     </Compile>
     <Compile Include="aspx\list.aspx.designer.cs">
       <DependentUpon>list.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="aspx\listtest1.aspx.cs">
+      <DependentUpon>listtest1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="aspx\listtest1.aspx.designer.cs">
+      <DependentUpon>listtest1.aspx</DependentUpon>
     </Compile>
     <Compile Include="aspx\login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>

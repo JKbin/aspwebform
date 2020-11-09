@@ -1,18 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/aspx/site.Master" AutoEventWireup="true" CodeBehind="list.aspx.cs" Inherits="ProjectWebForm.aspx.list" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/aspx/site.Master" AutoEventWireup="true" CodeBehind="listtest1.aspx.cs" Inherits="ProjectWebForm.aspx.listtest1" %>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <style>
-        ul.pagination {
-            padding-left: 840px;
-        }
-    </style>
-    <h1>발주서 리스트 페이지</h1>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-     <div class="container">
-         <%--AllowPaging/PageSize/OnPageIndexChanging : 페이징처리--%>
+
+    <div class="container">
         <asp:GridView ID="gridview" runat="server" AutoGenerateColumns="false"
-            CssClass="table table-bordered table-hover table-scripted" AllowPaging="true" PageSize="10" 
-            OnPageIndexChanging="gridview_PageIndexChanging">
+            CssClass="table table-bordered table-hover table-scripted" AllowPaging="true" PageSize="10" OnPageIndexChanging="gridview_PageIndexChanging">
             <Columns>
                 <asp:TemplateField>
                     <ItemTemplate>
@@ -43,12 +36,16 @@
                 <li class="page-item"><a class="page-link" href="#">Next</a></li>
             </ul>
             <asp:DropDownList ID="lstSearchField" runat="server">
-            <asp:ListItem Value="BUY_REQ_NO" Selected="True">요청번호</asp:ListItem>
-        </asp:DropDownList>
-        <asp:TextBox ID="txtSearchQuery" runat="server"></asp:TextBox>
-        <asp:Button ID="btnSearch" runat="server" Text="검색" CssClass="btn btn-dark" />
+                <asp:ListItem Value="BUY_REQ_NO" Selected="True">요청번호</asp:ListItem>
+            </asp:DropDownList>
+            <asp:TextBox ID="txtSearchQuery" runat="server"></asp:TextBox>
+            <asp:Button ID="btnSearch" runat="server" Text="검색" CssClass="btn btn-dark" />
         </nav>
     </section>--%>
+   
+
+
+
 
 
 </asp:Content>

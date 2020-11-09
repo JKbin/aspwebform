@@ -17,53 +17,26 @@ namespace ProjectWebForm.aspx
             if (!Page.IsPostBack)
 
             {
-
                 DisplayData(); // 그리드뷰 컨트롤에 데이터 출력
-
             }
         }
 
         private void DisplayData()
         {
-            SqlConnection con = new SqlConnection(
-
-       ConfigurationManager.ConnectionStrings
-
-       ["connect"].ConnectionString);
-
-
-
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["connect"].ConnectionString);
             SqlCommand cmd = new SqlCommand("SearchBoard", con);
-
             cmd.CommandType = CommandType.StoredProcedure;
-
-
-
-            cmd.Parameters.AddWithValue("@SearchField"
-
-                , Request["SearchField"]); //Name, title
-
-            cmd.Parameters.AddWithValue("@SearchQuery"
-
-                , Request["SearchQuery"]); //홍길동, 안녕
-
-
-
+            cmd.Parameters.AddWithValue("@SearchField", Request["SearchField"]); //Name, title
+            cmd.Parameters.AddWithValue("@SearchQuery", Request["SearchQuery"]); //홍길동, 안녕
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-
-
 
             DataSet ds = new DataSet();
 
-
-
             da.Fill(ds, "BRD_COMMON");
 
+            ctlSearchList.DataSource = ds.Tables[0];
 
-
-            this.ctlSearchList.DataSource = ds.Tables[0];
-
-            this.ctlSearchList.DataBind();
+            ctlSearchList.DataBind();
         }
 
         protected void btnList_Click(object sender, EventArgs e)

@@ -7,18 +7,17 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
-using System.Runtime.CompilerServices;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProjectWebForm.aspx
 {
-    public partial class list : System.Web.UI.Page
+    public partial class listtest1 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
                 DisplayData();
-
             }
         }
 
@@ -47,11 +46,6 @@ namespace ProjectWebForm.aspx
             gridview.DataBind();
         }
 
-        /// <summary>
-        /// 페이징 처리
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         protected void gridview_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gridview.PageIndex = e.NewPageIndex;

@@ -48,7 +48,7 @@
                             <li class="nav-item active"><a class="nav-link" href="main.aspx">Main<span class="sr-only">(current)</span></a></li>
                             <li class="nav-item"><a class="nav-link" href="list.aspx">List</a></li>
                             <li class="nav-item"><a class="nav-link" href="company.aspx">Company</a></li>
-                            <li class="nav-item"><a class="nav-link" href="board.aspx">Board</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/aspx/Board/List.aspx">Board</a></li>
                             <asp:LinkButton ID="lbtnlogout" runat="server" class="nav-link" OnClick="lbtnlogout_Click">Logout</asp:LinkButton>
                         </ul>
                     </div>

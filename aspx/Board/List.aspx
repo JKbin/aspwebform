@@ -15,7 +15,7 @@
         }
 
         tbody tr td {
-            text-align: center;
+           text-align: center;
         }
     </style>
     <div>
@@ -25,7 +25,8 @@
         </div>
 
         <section>
-            <asp:GridView ID="ctlBasicList" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered table-hover table-scripted">
+            <asp:GridView ID="ctlBasicList" runat="server" AutoGenerateColumns="false" 
+                CssClass="table table-bordered table-hover table-scripted">
                 <Columns>
                     <asp:BoundField HeaderText="번호" DataField="Num" />
                     <asp:HyperLinkField HeaderText="제목" DataNavigateUrlFields="Num"

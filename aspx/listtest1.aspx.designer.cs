@@ -11,7 +11,7 @@ namespace ProjectWebForm.aspx
 {
 
 
-    public partial class list
+    public partial class listtest1
     {
 
         /// <summary>
