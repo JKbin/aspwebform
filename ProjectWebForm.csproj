@@ -107,6 +107,7 @@
     <Content Include="css\list.css" />
     <Content Include="css\login.css" />
     <Content Include="css\main.css" />
+    <Content Include="css\Mlogin.css" />
     <Content Include="css\style.css" />
     <Content Include="Error\Error.aspx" />
     <Content Include="fonts\fontawesome-webfont.svg" />
@@ -116,6 +117,7 @@
     <Content Include="js\bootstrap.bundle.min.js" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
+    <Content Include="Mobile\Mlogin.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -332,7 +334,6 @@
     <Compile Include="aspx\site.Master.designer.cs">
       <DependentUpon>site.Master</DependentUpon>
     </Compile>
-    <Compile Include="Commons.cs" />
     <Compile Include="Error\Error.aspx.cs">
       <DependentUpon>Error.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -342,6 +343,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Mobile\Mlogin.aspx.cs">
+      <DependentUpon>Mlogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mobile\Mlogin.aspx.designer.cs">
+      <DependentUpon>Mlogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="test\detail.aspx.cs">
       <DependentUpon>detail.aspx</DependentUpon>
