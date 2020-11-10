@@ -40,17 +40,9 @@ namespace ProjectWebForm.aspx.Board
 
             {
 
-                SqlConnection conn = new SqlConnection(
-
-                    ConfigurationManager.ConnectionStrings
-
-                    ["connect"].ConnectionString);
-
-
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["connect"].ConnectionString);
 
                 conn.Open();
-
-
 
                 SqlCommand cmd = new SqlCommand("DeleteBoard", conn);
 

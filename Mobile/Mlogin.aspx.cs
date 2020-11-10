@@ -16,7 +16,7 @@ namespace ProjectWebForm.Models
         {
             if (Session["user"] != null)
             {
-                Response.Redirect("Login.aspx");
+                Response.Redirect("Mlogin.aspx");
             }
         }
 

@@ -69,20 +69,10 @@ namespace ProjectWebForm.aspx.Board
             while (dr.Read())
 
             {
-
                 lblNum.Text = dr["Num"].ToString();
-
                 txtName.Text = dr["Name"].ToString();
-
-
-
                 txtTitle.Text = dr["Title"].ToString();
-
                 txtContent.Text = dr["Content"].ToString();
-
-
-
-
             }
 
             dr.Close();
@@ -148,15 +138,12 @@ namespace ProjectWebForm.aspx.Board
 
                 result = true;
             }
-
             return result;
-
         }
 
         protected void btnList_Click(object sender, EventArgs e)
         {
             Response.Redirect("List.aspx");
-
         }
     }
 }

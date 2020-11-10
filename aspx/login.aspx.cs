@@ -30,7 +30,6 @@ namespace ProjectWebForm.aspx
             using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["connect"].ToString()))
             {
                 con.Open();
-                //string query = @" SELECT COUNT(*) FROM CIS_USER WHERE USER_ID=@USER_ID AND USER_PWD=@USER_PWD ";
                 string query = @" SELECT COUNT(*) FROM CIS_BIZ_COMP WHERE CUSTOMER_CODE=@CUSTOMER_CODE AND CUSTOMER_PWD=@CUSTOMER_PWD ";
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@CUSTOMER_CODE", txtUserId.Text);

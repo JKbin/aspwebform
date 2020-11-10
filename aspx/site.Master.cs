@@ -19,5 +19,25 @@ namespace ProjectWebForm.aspx
             Session.Remove("user");
             Response.Redirect("login.aspx");
         }
+
+        protected void lbtnboard_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("list.aspx");
+        }
+
+        protected void lbtncompany_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("company.aspx");
+        }
+
+        protected void lbtnList_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ordlist.aspx");
+        }
+
+        protected void lbtnmain_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("main.aspx");
+        }
     }
 }

@@ -5,58 +5,42 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
-using System.Data.SqlClient;
 using System.Configuration;
-using System.Runtime.CompilerServices;
+using System.Data.SqlClient;
 
-namespace ProjectWebForm.aspx
+namespace ProjectWebForm.aspx.Board
 {
-    public partial class list : System.Web.UI.Page
+    public partial class List : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
-            {
-                DisplayData();
-
-            }
+            DisplayData();
         }
 
         private void DisplayData()
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["connect"].ConnectionString);
-            string query = @"SELECT COMP.COMP_NM , PLANT.PLANT_NM ,
-                                    ORD_DET.PART_NO, ORD_DET.PART_NM, ORD_DET.UNIT, ORD_DET.BUY_QTY , ORD.BUY_ORD_NO, BIZ.CUSTOMER_NAME
-                                    FROM MAT_ORD_DETAIL AS ORD_DET
-                                    LEFT OUTER JOIN MAT_ORD AS ORD
-                                    ON ORD_DET.BUY_ORD_NO = ORD.BUY_ORD_NO
-                                    LEFT OUTER JOIN CIS_COMP AS COMP
-                                    ON ORD.COMP_CD = COMP.COMP_CD
-                                    LEFT OUTER JOIN CIS_PLANT AS PLANT
-                                    ON ORD.PLANT_CD = PLANT.PLANT_CD
-                                    LEFT OUTER JOIN CIS_BIZ_COMP AS BIZ
-                                    ON ORD.CUSTOMER_CODE = BIZ.CUSTOMER_CODE ";
-
-
-
-            SqlCommand cmd = new SqlCommand(query, con);
-            SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            SqlCommand cmd = new SqlCommand("ListBoard", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
-            sda.Fill(ds, "MAT_ORD_DETAIL");
-            gridview.DataSource = ds;
-            gridview.DataBind();
+            da.Fill(ds, "BRD_COMMON");
+            ctlBasicList.DataSource = ds.Tables[0];
+            ctlBasicList.DataBind();
         }
 
-        /// <summary>
-        /// 페이징 처리
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void gridview_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        protected void btnSearch_Click(object sender, EventArgs e)
         {
-            gridview.PageIndex = e.NewPageIndex;
-            gridview.DataBind();
-            DisplayData();
+            // 검색페이지로 필드명과 검색어 전달
+            string strUrl = string.Format("Search.aspx?SearchField={0}&SearchQuery={1}"
+                ,lstSearchField.SelectedValue, txtSearchQuery.Text);
+
+            Response.Redirect(strUrl);
+        }
+
+        protected void btnWrite_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Write.aspx");
         }
     }
 }

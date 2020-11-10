@@ -14,54 +14,23 @@ namespace ProjectWebForm.aspx.Board
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-                Page.SetFocus("txtName");
-            
+            Page.SetFocus("txtName");
         }
 
         protected void btnWrite_Click(object sender, EventArgs e)
         {
-            SqlConnection objcon = new SqlConnection(
-
-        ConfigurationManager.ConnectionStrings
-
-        ["connect"].ConnectionString);
-
-
+            SqlConnection objcon = new SqlConnection(ConfigurationManager.ConnectionStrings["connect"].ConnectionString);
 
             // 커멘드
 
             SqlCommand objcmd = new SqlCommand("WriteBoard", objcon);
-
             objcmd.CommandType = CommandType.StoredProcedure;
 
 
-
-            objcmd.Parameters.AddWithValue("@Name",
-
-                txtName.Text);
-
-            
-
-            objcmd.Parameters.AddWithValue("@Title",
-
-                txtTitle.Text);
-
-           
-
-            objcmd.Parameters.AddWithValue("@Content",
-
-                txtContent.Text);
-
-            objcmd.Parameters.AddWithValue("@Password",
-
-                txtPassword.Text);
-
-            
-
-            
-
-
+            objcmd.Parameters.AddWithValue("@Name",txtName.Text);
+            objcmd.Parameters.AddWithValue("@Title",txtTitle.Text);
+            objcmd.Parameters.AddWithValue("@Content",txtContent.Text);
+            objcmd.Parameters.AddWithValue("@Password",txtPassword.Text);
 
             objcon.Open();
 
@@ -77,7 +46,6 @@ namespace ProjectWebForm.aspx.Board
         protected void btnList_Click(object sender, EventArgs e)
         {
             Response.Redirect("List.aspx");
-
         }
     }
 }

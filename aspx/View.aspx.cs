@@ -65,7 +65,6 @@ namespace ProjectWebForm.aspx.Board
         protected void btnDelete_Click(object sender, EventArgs e)
         {
             // 삭제 페이지로 현재 글의 번호 값 넘김
-
             Response.Redirect(String.Format("./Delete.aspx?Num={0}", Request["Num"]));
         }
 

@@ -1,54 +1,54 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/aspx/site.Master" AutoEventWireup="true" CodeBehind="list.aspx.cs" Inherits="ProjectWebForm.aspx.list" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/aspx/site.Master" AutoEventWireup="true" CodeBehind="List.aspx.cs" Inherits="ProjectWebForm.aspx.Board.List" %>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <style>
-        ul.pagination {
-            padding-left: 840px;
+        form div section {
+            margin-top: 80px;
+        }
+
+        div section section {
+            padding-left: 700px;
+        }
+
+        tbody tr th {
+            text-align: center;
+        }
+
+        tbody tr td {
+           text-align: center;
         }
     </style>
-    <h1>발주서 리스트 페이지</h1>
+    <div>
+        <div>
+            <h3>공용 게시판 리스트</h3>
+        </div>
 
-     <div class="container">
-         <%--AllowPaging/PageSize/OnPageIndexChanging : 페이징처리--%>
-        <asp:GridView ID="gridview" runat="server" AutoGenerateColumns="false"
-            CssClass="table table-bordered table-hover table-scripted" AllowPaging="true" PageSize="10" 
-            OnPageIndexChanging="gridview_PageIndexChanging">
-            <Columns>
-                <asp:TemplateField>
-                    <ItemTemplate>
-                        <asp:CheckBox ID="ordcheck" runat="server" Width="5px"/>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:BoundField HeaderText="회사명" DataField="COMP_NM" />
-                <asp:BoundField HeaderText="공장명" DataField="PLANT_NM" />
-                <asp:BoundField HeaderText="품번" DataField="PART_NO" />
-                <asp:BoundField HeaderText="품명" DataField="PART_NM" />
-                <asp:BoundField HeaderText="단위" DataField="UNIT" />
-                <asp:BoundField HeaderText="수량" DataField="BUY_QTY" />
-                <asp:HyperLinkField HeaderText="주문번호" DataNavigateUrlFields="CUSTOMER_NAME"
-                    DataNavigateUrlFormatString="detail.aspx?CUSTOMER_NAME={0}"
-                    DataTextField="BUY_ORD_NO" />
-                <asp:BoundField HeaderText="거래처명" DataField="CUSTOMER_NAME" />
-            </Columns>
-        </asp:GridView>
+        <section>
+            <asp:GridView ID="ctlBasicList" runat="server" AutoGenerateColumns="false" 
+                CssClass="table table-bordered table-hover table-scripted">
+                <Columns>
+                    <asp:BoundField HeaderText="번호" DataField="Num" />
+                    <asp:HyperLinkField HeaderText="제목" DataNavigateUrlFields="Num"
+                        DataNavigateUrlFormatString="View.aspx?Num={0}"
+                        DataTextField="Title" ItemStyle-Width="350px" />
+                    <asp:BoundField HeaderText="작성자" DataField="Name" />
+                    <asp:BoundField HeaderText="작성일" DataField="PostDate" DataFormatString="{0:yyyy-mm-dd}" />
+                    <asp:BoundField HeaderText="조회수" DataField="ReadCount" />
+                </Columns>
+            </asp:GridView>
+
+
+
+            <section>
+                <asp:DropDownList ID="lstSearchField" runat="server">
+                    <asp:ListItem Value="Name">작성자</asp:ListItem>
+                    <asp:ListItem Value="Title" Selected="True">제목</asp:ListItem>
+                    <asp:ListItem Value="Content">내용</asp:ListItem>
+                </asp:DropDownList>
+                <asp:TextBox ID="txtSearchQuery" runat="server"></asp:TextBox>
+                <asp:Button ID="btnSearch" runat="server" Text="검색" OnClick="btnSearch_Click" CssClass="btn btn-primary" />
+                <asp:Button ID="btnWrite" runat="server" Text="글쓰기" OnClick="btnWrite_Click" CssClass="btn btn-info" />
+            </section>
+        </section>
     </div>
-
-    <%--<section>
-        <nav aria-label="Page navigation example">
-            <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-            </ul>
-            <asp:DropDownList ID="lstSearchField" runat="server">
-            <asp:ListItem Value="BUY_REQ_NO" Selected="True">요청번호</asp:ListItem>
-        </asp:DropDownList>
-        <asp:TextBox ID="txtSearchQuery" runat="server"></asp:TextBox>
-        <asp:Button ID="btnSearch" runat="server" Text="검색" CssClass="btn btn-dark" />
-        </nav>
-    </section>--%>
-
-
 </asp:Content>

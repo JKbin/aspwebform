@@ -69,18 +69,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="aspx\board.aspx" />
-    <Content Include="aspx\Board\Delete.aspx" />
-    <Content Include="aspx\Board\List.aspx" />
-    <Content Include="aspx\Board\Modify.aspx" />
-    <Content Include="aspx\Board\View.aspx" />
-    <Content Include="aspx\Board\Write.aspx" />
+    <Content Include="aspx\board12.aspx" />
+    <Content Include="aspx\Delete.aspx" />
+    <Content Include="aspx\List.aspx" />
+    <Content Include="aspx\Modify.aspx" />
+    <Content Include="aspx\View.aspx" />
+    <Content Include="aspx\Write.aspx" />
     <Content Include="aspx\company.aspx" />
-    <Content Include="aspx\list.aspx" />
+    <Content Include="aspx\ordlist.aspx" />
     <Content Include="aspx\listtest1.aspx" />
     <Content Include="aspx\login.aspx" />
     <Content Include="aspx\main.aspx" />
-    <Content Include="aspx\Board\Search.aspx" />
+    <Content Include="aspx\Search.aspx" />
     <Content Include="assets\img\bg-masthead.jpg" />
     <Content Include="assets\img\bg-signup.jpg" />
     <Content Include="assets\img\bird-4848178_1920.jpg" />
@@ -243,46 +243,46 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="aspx\board.aspx.cs">
-      <DependentUpon>board.aspx</DependentUpon>
+    <Compile Include="aspx\board12.aspx.cs">
+      <DependentUpon>board12.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="aspx\board.aspx.designer.cs">
-      <DependentUpon>board.aspx</DependentUpon>
+    <Compile Include="aspx\board12.aspx.designer.cs">
+      <DependentUpon>board12.aspx</DependentUpon>
     </Compile>
-    <Compile Include="aspx\Board\Delete.aspx.cs">
+    <Compile Include="aspx\Delete.aspx.cs">
       <DependentUpon>Delete.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="aspx\Board\Delete.aspx.designer.cs">
+    <Compile Include="aspx\Delete.aspx.designer.cs">
       <DependentUpon>Delete.aspx</DependentUpon>
     </Compile>
-    <Compile Include="aspx\Board\List.aspx.cs">
+    <Compile Include="aspx\List.aspx.cs">
       <DependentUpon>List.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="aspx\Board\List.aspx.designer.cs">
+    <Compile Include="aspx\List.aspx.designer.cs">
       <DependentUpon>List.aspx</DependentUpon>
     </Compile>
-    <Compile Include="aspx\Board\Modify.aspx.cs">
+    <Compile Include="aspx\Modify.aspx.cs">
       <DependentUpon>Modify.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="aspx\Board\Modify.aspx.designer.cs">
+    <Compile Include="aspx\Modify.aspx.designer.cs">
       <DependentUpon>Modify.aspx</DependentUpon>
     </Compile>
-    <Compile Include="aspx\Board\View.aspx.cs">
+    <Compile Include="aspx\View.aspx.cs">
       <DependentUpon>View.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="aspx\Board\View.aspx.designer.cs">
+    <Compile Include="aspx\View.aspx.designer.cs">
       <DependentUpon>View.aspx</DependentUpon>
     </Compile>
-    <Compile Include="aspx\Board\Write.aspx.cs">
+    <Compile Include="aspx\Write.aspx.cs">
       <DependentUpon>Write.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="aspx\Board\Write.aspx.designer.cs">
+    <Compile Include="aspx\Write.aspx.designer.cs">
       <DependentUpon>Write.aspx</DependentUpon>
     </Compile>
     <Compile Include="aspx\company.aspx.cs">
@@ -292,12 +292,12 @@
     <Compile Include="aspx\company.aspx.designer.cs">
       <DependentUpon>company.aspx</DependentUpon>
     </Compile>
-    <Compile Include="aspx\list.aspx.cs">
-      <DependentUpon>list.aspx</DependentUpon>
+    <Compile Include="aspx\ordlist.aspx.cs">
+      <DependentUpon>ordlist.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="aspx\list.aspx.designer.cs">
-      <DependentUpon>list.aspx</DependentUpon>
+    <Compile Include="aspx\ordlist.aspx.designer.cs">
+      <DependentUpon>ordlist.aspx</DependentUpon>
     </Compile>
     <Compile Include="aspx\listtest1.aspx.cs">
       <DependentUpon>listtest1.aspx</DependentUpon>
@@ -320,11 +320,11 @@
     <Compile Include="aspx\main.aspx.designer.cs">
       <DependentUpon>main.aspx</DependentUpon>
     </Compile>
-    <Compile Include="aspx\Board\Search.aspx.cs">
+    <Compile Include="aspx\Search.aspx.cs">
       <DependentUpon>Search.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="aspx\Board\Search.aspx.designer.cs">
+    <Compile Include="aspx\Search.aspx.designer.cs">
       <DependentUpon>Search.aspx</DependentUpon>
     </Compile>
     <Compile Include="aspx\site.Master.cs">
