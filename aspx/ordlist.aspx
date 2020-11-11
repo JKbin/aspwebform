@@ -18,7 +18,7 @@
             <Columns>
                 <asp:TemplateField>
                     <ItemTemplate>
-                        <asp:CheckBox ID="ordcheck" runat="server" Width="5px" OnCheckedChanged="ordcheck_CheckedChanged" />
+                        <asp:CheckBox ID="ordcheck" runat="server" Width="5px"  AutoPostBack="true"/>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:BoundField HeaderText="회사명" DataField="COMP_NM" />
@@ -28,9 +28,10 @@
                 <asp:BoundField HeaderText="단위" DataField="UNIT" />
                 <asp:BoundField HeaderText="수량" DataField="BUY_QTY" />
                 <asp:BoundField HeaderText="인덱스" DataField="DETAIL_LINE" />
-                <asp:HyperLinkField HeaderText="주문번호" DataNavigateUrlFields="CUSTOMER_NAME"
+               <%-- <asp:HyperLinkField HeaderText="주문번호" DataNavigateUrlFields="CUSTOMER_NAME"
                     DataNavigateUrlFormatString="detail.aspx?CUSTOMER_NAME={0}"
-                    DataTextField="BUY_ORD_NO" />
+                    DataTextField="BUY_ORD_NO" />--%>
+                <asp:BoundField HeaderText="주문번호" DataField="BUY_ORD_NO" />
                 <asp:BoundField HeaderText="거래처명" DataField="CUSTOMER_NAME" />
             </Columns>
         </asp:GridView>
@@ -41,6 +42,8 @@
             <asp:Button ID="btnsubmit" runat="server" Text="발행" CssClass="btn btn-primary" OnClick="btnsubmit_Click" />
             <asp:Button ID="Button1" runat="server" Text="Test" CssClass="btn btn-danger" OnClick="Button1_Click" />
             <asp:Label ID="Label1" runat="server" Text="Test" CssClass="border-danger"></asp:Label>
+            <asp:Button ID="Button2" runat="server" Text="Test2" OnClick="Button2_Click"/>
+            <asp:Label ID="Label2" runat="server" Text="label2"></asp:Label>
         </div>
     </div>
 </asp:Content>

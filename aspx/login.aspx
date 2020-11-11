@@ -31,12 +31,12 @@
         <div class="design-w3l">
             <div class="mail-form-agile">
                 <form id="form1" runat="server" action="#" method="post">
-                    <asp:TextBox ID="txtUserId" placeholder="UserId" runat="server"></asp:TextBox>
-                    <asp:TextBox ID="txtUserPwd" type="Password" placeholder="Password" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtCustomerCode" placeholder="UserId" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtCustomerPwd" type="Password" placeholder="Password" runat="server"></asp:TextBox>
                     <asp:Button ID="btnlogin" runat="server" Text="Login" OnClick="btnlogin_Click" />
                 </form>
             </div>
-            <asp:Label ID="lblMessage" runat="server" Text="asdasd"></asp:Label>
+            <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
             <div class="clear"></div>
         </div>
     </div>

@@ -11,7 +11,10 @@ namespace ProjectWebForm.aspx
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["code"] != null)
+            {
+                Response.Write(Session["code"].ToString());
+            }
         }
     }
 }

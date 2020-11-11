@@ -16,8 +16,9 @@ namespace ProjectWebForm.aspx
 
         protected void lbtnlogout_Click(object sender, EventArgs e)
         {
-            Session.Remove("user");
+            //Session.Remove("code");
             Response.Redirect("login.aspx");
+            Session.Clear();
         }
 
         protected void lbtnboard_Click(object sender, EventArgs e)

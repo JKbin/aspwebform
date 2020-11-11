@@ -24,22 +24,22 @@ namespace ProjectWebForm.aspx
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// txtUserId 컨트롤입니다.
+        /// txtCustomerCode 컨트롤입니다.
         /// </summary>
         /// <remarks>
         /// 자동 생성 필드입니다.
         /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하세요.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUserId;
+        protected global::System.Web.UI.WebControls.TextBox txtCustomerCode;
 
         /// <summary>
-        /// txtUserPwd 컨트롤입니다.
+        /// txtCustomerPwd 컨트롤입니다.
         /// </summary>
         /// <remarks>
         /// 자동 생성 필드입니다.
         /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하세요.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUserPwd;
+        protected global::System.Web.UI.WebControls.TextBox txtCustomerPwd;
 
         /// <summary>
         /// btnlogin 컨트롤입니다.

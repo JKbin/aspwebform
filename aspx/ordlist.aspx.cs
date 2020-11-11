@@ -8,6 +8,9 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Runtime.CompilerServices;
+using ProjectWebForm.aspx.Board;
+using System.Security.Authentication.ExtendedProtection;
+using System.Web.Services.Description;
 
 namespace ProjectWebForm.aspx
 {
@@ -46,13 +49,15 @@ namespace ProjectWebForm.aspx
                                 INNER JOIN CIS_PLANT AS PLANT
                                 ON ORD.PLANT_CD = PLANT.PLANT_CD
                                 INNER JOIN CIS_BIZ_COMP AS BIZ
-                                ON BIZ.CUSTOMER_CODE = ORD.CUSTOMER_CODE ";
+                                ON BIZ.CUSTOMER_CODE = ORD.CUSTOMER_CODE 
+                                WHERE ORD.CUSTOMER_CODE LIKE @ORD.CUSTOMER_CODE ";
 
 
 
             SqlCommand cmd = new SqlCommand(query, con);
             SqlDataAdapter sda = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
+            cmd.Parameters.AddWithValue("ORD.CUSTOMER_CODE",Session["code"].ToString());
             sda.Fill(ds, "MAT_ORD_DETAIL");
             gridview.DataSource = ds;
             gridview.DataBind();
@@ -72,29 +77,57 @@ namespace ProjectWebForm.aspx
 
         protected void btnsubmit_Click(object sender, EventArgs e)
         {
-            // 체크박스 체크된 갯수체크 > 체크된개수만큼 주문번호를 기준으로 Header 정보 생성
+            string temp = Creating_TR_NO();
+            List<int> chk_count = new List<int>();
+            List<int> chk_index = new List<int>();
+            // 체크박스가 체크되어있는지 확인
+            for (int i = 0; i < gridview.Rows.Count; i++)
+            {
+                CheckBox chk = (CheckBox)gridview.Rows[i].Cells[0].FindControl("ordcheck");
+                if (chk.Checked == true)
+                {
+                    chk_count.Add(i);
+                }
+            }
+            // 체크박스에 선택된 rowindex 저장
+            foreach (GridViewRow rw in gridview.Rows)
+            {
+                CheckBox chk = (CheckBox)rw.Cells[0].FindControl("ordcheck");
+                if (chk.Checked == true)
+                {
+                    chk_index.Add(rw.RowIndex);
+                }
+            }
 
-            List<int> alist = new List<int>();
-            //삭제 체크박스가 체크된 행의 인덱스 번호를 리스트에 저장
-            //for (int i = 0; i < gridview.Rows.Count; i++)
-            //{
-            //    if (gridview.Rows[i].Cells[0].Controls[0].ToString
-            //        Value.ToString() == "True")
-            //        alist.Add(i);
-            //}
+            for (int i = 0; i < chk_count.Count; i++)
+            {
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["connect"].ConnectionString))
+                {
+                    DataSet ds = new DataSet();
+                    conn.Open();
 
+                    string query = @" INSERT INTO WEB_PRT (ID, DETAIL_LINE, BUY_ORD_NO, QTY) 
+                                          VALUES (@ID, @DETAIL_LINE, @BUY_ORD_NO, @QTY) ";
 
+                    SqlCommand cmd = new SqlCommand(query, conn);
 
+                    cmd.Parameters.AddWithValue("ID", temp);
+                    cmd.Parameters.AddWithValue("QTY", gridview.Rows[chk_index[i]].Cells[7].Text);
+                    cmd.Parameters.AddWithValue("DETAIL_LINE", gridview.Rows[chk_index[i]].Cells[8].Text);
+                    cmd.Parameters.AddWithValue("BUY_ORD_NO", gridview.Rows[chk_index[i]].Cells[9].Text);
+
+                    cmd.Connection = conn;
+                    cmd.ExecuteNonQuery();
+                }
+                DisplayData();
+            }
         }
 
-       
+
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-
             
-
-
         }
 
 
@@ -155,9 +188,13 @@ namespace ProjectWebForm.aspx
             DisplayData();
         }
 
+        /// <summary>
+        /// Gridview Update
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void gridview_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-
             GridViewRow row = gridview.Rows[e.RowIndex];
             int DETAIL_LINE = Convert.ToInt32(gridview.DataKeys[e.RowIndex].Values[0]);
             decimal qty = decimal.Parse((row.Cells[7].Controls[0] as TextBox).Text);
@@ -166,7 +203,7 @@ namespace ProjectWebForm.aspx
             {
                 con.Open();
                 string query = @"UPDATE MAT_ORD_DETAIL SET BUY_QTY = @BUY_QTY WHERE DETAIL_LINE = @DETAIL_LINE";
-                SqlCommand cmd = new SqlCommand(query,con);
+                SqlCommand cmd = new SqlCommand(query, con);
 
                 cmd.Parameters.AddWithValue("@DETAIL_LINE", DETAIL_LINE);
                 cmd.Parameters.AddWithValue("@BUY_QTY", qty);
@@ -178,9 +215,10 @@ namespace ProjectWebForm.aspx
             DisplayData();
         }
 
-        protected void ordcheck_CheckedChanged(object sender, EventArgs e)
+
+        protected void Button2_Click(object sender, EventArgs e)
         {
-            
+            Label2.Text = gridview.Rows[3].Cells[9].Text;
         }
     }
 }
