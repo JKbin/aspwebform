@@ -37,13 +37,17 @@
         </asp:GridView>
 
 
+        <%--<asp:GridView ID="GridView1" runat="server">
+            <Columns>
+                <asp:BoundField HeaderText="쓰레기" DataField="GARBAGE" />
+            </Columns>
+        </asp:GridView>--%>
 
         <div>
             <asp:Button ID="btnsubmit" runat="server" Text="발행" CssClass="btn btn-primary" OnClick="btnsubmit_Click" />
-            <asp:Button ID="Button1" runat="server" Text="Test" CssClass="btn btn-danger" OnClick="Button1_Click" />
-            <asp:Label ID="Label1" runat="server" Text="Test" CssClass="border-danger"></asp:Label>
-            <asp:Button ID="Button2" runat="server" Text="Test2" OnClick="Button2_Click"/>
-            <asp:Label ID="Label2" runat="server" Text="label2"></asp:Label>
+            <asp:Button ID="Button1" runat="server" Text="QRcoder" OnClick="Button1_Click"/>
+            <asp:TextBox ID="txtQRcode" runat="server"></asp:TextBox>
+            <asp:Image ID="Image1" runat="server" />
         </div>
     </div>
 </asp:Content>

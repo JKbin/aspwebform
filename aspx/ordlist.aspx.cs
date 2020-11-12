@@ -11,6 +11,11 @@ using System.Runtime.CompilerServices;
 using ProjectWebForm.aspx.Board;
 using System.Security.Authentication.ExtendedProtection;
 using System.Web.Services.Description;
+using QRCoder;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.Drawing.Text;
+
 
 namespace ProjectWebForm.aspx
 {
@@ -30,37 +35,47 @@ namespace ProjectWebForm.aspx
         {
 
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["connect"].ConnectionString);
-            string query = @"SELECT 
-                                COMP.COMP_NM,
-                                PLANT.PLANT_NM,
-                                DET.BUY_ORD_NO,
-                                BIZ.CUSTOMER_NAME,
-                                DET.PART_NO,
-                                DET.PART_NM,
-                                DET.UNIT,
-                                DET.BUY_QTY,
-                                DET.DETAIL_LINE,
-                                ORD.RMK
-                                FROM MAT_ORD_DETAIL AS DET
-                                INNER JOIN MAT_ORD AS ORD
-                                ON DET.BUY_ORD_NO = ORD.BUY_ORD_NO
-                                INNER JOIN CIS_COMP AS COMP
-                                ON ORD.COMP_CD = COMP.COMP_CD
-                                INNER JOIN CIS_PLANT AS PLANT
-                                ON ORD.PLANT_CD = PLANT.PLANT_CD
-                                INNER JOIN CIS_BIZ_COMP AS BIZ
-                                ON BIZ.CUSTOMER_CODE = ORD.CUSTOMER_CODE 
-                                WHERE ORD.CUSTOMER_CODE LIKE @ORD.CUSTOMER_CODE ";
+            
+                string query = @" SELECT COMP.COMP_NM , PLANT.PLANT_NM ,
+                                  ORD_DET.PART_NO, ORD_DET.PART_NM, ORD_DET.UNIT, 
+                                  ISNULL(ORD_DET.BUY_QTY - WEB.QTY,ORD_DET.BUY_QTY)- 
+                                  ISNULL((SELECT SUM(QTY) FROM MAT_IN_DETAIL
+                                  GROUP BY MAT_ORD_NO , ORD_DETAIL_LINE
+                                  HAVING MAT_ORD_NO  = ORD_DET.BUY_ORD_NO AND ORD_DETAIL_LINE = ORD_DET.DETAIL_LINE),0)[BUY_QTY],
+                                  ORD_DET.DETAIL_LINE,
+                                  ORD.BUY_ORD_NO, BIZ.CUSTOMER_NAME
+                                  FROM    MAT_ORD_DETAIL  AS  ORD_DET
+                                  INNER JOIN  MAT_ORD      AS  ORD
+                                  ON ORD_DET.BUY_ORD_NO = ORD.BUY_ORD_NO
+                                  INNER JOIN  CIS_COMP    AS  COMP
+                                  ON ORD.COMP_CD = COMP.COMP_CD
+                                  INNER JOIN  CIS_PLANT    AS  PLANT
+                                  ON ORD.PLANT_CD = PLANT.PLANT_CD
+                                  INNER JOIN  CIS_BIZ_COMP  AS  BIZ
+                                  ON ORD.CUSTOMER_CODE = BIZ.CUSTOMER_CODE
+                                  LEFT OUTER  JOIN WEB_PRT      AS  WEB
+                                  ON ORD_DET.BUY_ORD_NO = WEB.BUY_ORD_NO AND ORD_DET.DETAIL_LINE = WEB.DETAIL_LINE
+                                  WHERE ORD.CUSTOMER_CODE = @CUSTOMER_CODE AND ISNULL(ORD_DET.BUY_QTY - WEB.QTY,ORD_DET.BUY_QTY)- 
+                                  ISNULL((SELECT SUM(QTY) FROM MAT_IN_DETAIL
+                                  GROUP BY MAT_ORD_NO , ORD_DETAIL_LINE
+                                  HAVING MAT_ORD_NO  = ORD_DET.BUY_ORD_NO AND ORD_DETAIL_LINE = ORD_DET.DETAIL_LINE),0)>0
+                                  ORDER BY BUY_ORD_NO ";
+
+                SqlCommand cmd = new SqlCommand(query, con);
+
+                SqlParameter paramCity = new SqlParameter("@CUSTOMER_CODE", SqlDbType.VarChar, 20);
+                paramCity.Value = Session["code"].ToString();
+                cmd.Parameters.Add(paramCity);
+
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataSet ds = new DataSet();
+                sda.Fill(ds, "MAT_ORD_DETAIL");
+                gridview.DataSource = ds;
+                gridview.DataBind();
+            
 
 
 
-            SqlCommand cmd = new SqlCommand(query, con);
-            SqlDataAdapter sda = new SqlDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            cmd.Parameters.AddWithValue("ORD.CUSTOMER_CODE",Session["code"].ToString());
-            sda.Fill(ds, "MAT_ORD_DETAIL");
-            gridview.DataSource = ds;
-            gridview.DataBind();
         }
 
         /// <summary>
@@ -78,6 +93,7 @@ namespace ProjectWebForm.aspx
         protected void btnsubmit_Click(object sender, EventArgs e)
         {
             string temp = Creating_TR_NO();
+            txtQRcode.Text = temp;
             List<int> chk_count = new List<int>();
             List<int> chk_index = new List<int>();
             // 체크박스가 체크되어있는지 확인
@@ -125,10 +141,7 @@ namespace ProjectWebForm.aspx
 
 
 
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-            
-        }
+       
 
 
 
@@ -215,10 +228,36 @@ namespace ProjectWebForm.aspx
             DisplayData();
         }
 
-
-        protected void Button2_Click(object sender, EventArgs e)
+        /// <summary>
+        /// make a QRCode
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void Button1_Click(object sender, EventArgs e)
         {
-            Label2.Text = gridview.Rows[3].Cells[9].Text;
+            GenerateBarCode();
         }
+
+        private void GenerateBarCode()
+        {
+            WSBarcodeGenerator.BarCodeGenerator barCodeGen = new WSBarcodeGenerator.BarCodeGenerator();
+
+            int barSize = 30;
+
+            System.Byte[] imgBarcode = Code39("123456", barSize, true, "Centralbiz...");
+            MemoryStream memStream = new MemoryStream(imgBarcode);
+            Bitmap bitmap = new Bitmap(memStream);
+            bitmap.Save(memStream, ImageFormat.Png);
+            var base64Data = Convert.ToBase64String(memStream.ToArray());
+            imgBar.Attributes.Add("src", "data:image/png;base64," + base64Data);
+            //Response.Write(bitmap);
+            //var base64Data = Convert.ToBase64String(memStream.ToArray());
+            //imgBar.Attributes.Add("src", "png");
+        }
+
+
+
+
+
     }
 }

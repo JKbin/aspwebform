@@ -57,3 +57,4 @@ C:\Users\admin\source\repos\ProjectWebForm\obj\Debug\ProjectWebForm.csproj.CopyC
 C:\Users\admin\source\repos\ProjectWebForm\obj\Debug\ProjectWebForm.dll
 C:\Users\admin\source\repos\ProjectWebForm\obj\Debug\ProjectWebForm.pdb
 C:\Users\admin\source\repos\ProjectWebForm\obj\Debug\ProjectWebForm.csprojAssemblyReference.cache
+C:\Users\admin\source\repos\ProjectWebForm\bin\QRCoder.dll
