@@ -45,8 +45,11 @@
 
         <div>
             <asp:Button ID="btnsubmit" runat="server" Text="발행" CssClass="btn btn-primary" OnClick="btnsubmit_Click" />
-            <asp:Button ID="Button1" runat="server" Text="QRcoder" OnClick="Button1_Click"/>
-            <asp:TextBox ID="txtQRcode" runat="server"></asp:TextBox>
+
+            <asp:Button ID="btnGenerate" runat="server" Text="Generate" OnClick="btnGenerate_Click"/>
+            <asp:TextBox ID="txtCode" runat="server"></asp:TextBox>
+            <hr />
+            <%--<asp:PlaceHolder ID="plBarCode" runat="server" />--%>
             <asp:Image ID="Image1" runat="server" />
         </div>
     </div>

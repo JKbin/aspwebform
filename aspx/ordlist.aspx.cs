@@ -15,7 +15,7 @@ using QRCoder;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Drawing.Text;
-
+using System.IO;
 
 namespace ProjectWebForm.aspx
 {
@@ -93,7 +93,7 @@ namespace ProjectWebForm.aspx
         protected void btnsubmit_Click(object sender, EventArgs e)
         {
             string temp = Creating_TR_NO();
-            txtQRcode.Text = temp;
+            txtCode.Text = temp;
             List<int> chk_count = new List<int>();
             List<int> chk_index = new List<int>();
             // 체크박스가 체크되어있는지 확인
@@ -229,35 +229,36 @@ namespace ProjectWebForm.aspx
         }
 
         /// <summary>
-        /// make a QRCode
+        /// make a barcode
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void btnGenerate_Click(object sender, EventArgs e)
         {
-            GenerateBarCode();
+            string barcode = txtCode.Text;
+            System.Web.UI.WebControls.Image imgBarcode = new System.Web.UI.WebControls.Image();
+            using (Bitmap bitMap = new Bitmap(barcode.Length * 40, 80))
+            {
+                using (Graphics graphics = Graphics.FromImage(bitMap))
+                {
+                    Font oFont = new Font("IDAHC39M Code 39 Barcode", 16);
+                    PointF point = new PointF(2f,2f);
+                    SolidBrush blackBrush = new SolidBrush(Color.Black);
+                    SolidBrush whitebrush = new SolidBrush(Color.White);
+                    graphics.FillRectangle(whitebrush, 0, 0, bitMap.Width, bitMap.Height);
+                    graphics.DrawString("*"+barcode+"*",oFont,blackBrush,point);
+                }
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    bitMap.Save(ms, ImageFormat.Png);
+                    byte[] byteImage = ms.ToArray();
+
+                    Convert.ToBase64String(byteImage);
+                    imgBarcode.ImageUrl = "data:image/png;base64," + Convert.ToBase64String(byteImage);
+                }
+                Image1.Controls.Add(imgBarcode);
+                //plBarCode.Controls.Add(imgBarcode);
+            }
         }
-
-        private void GenerateBarCode()
-        {
-            WSBarcodeGenerator.BarCodeGenerator barCodeGen = new WSBarcodeGenerator.BarCodeGenerator();
-
-            int barSize = 30;
-
-            System.Byte[] imgBarcode = Code39("123456", barSize, true, "Centralbiz...");
-            MemoryStream memStream = new MemoryStream(imgBarcode);
-            Bitmap bitmap = new Bitmap(memStream);
-            bitmap.Save(memStream, ImageFormat.Png);
-            var base64Data = Convert.ToBase64String(memStream.ToArray());
-            imgBar.Attributes.Add("src", "data:image/png;base64," + base64Data);
-            //Response.Write(bitmap);
-            //var base64Data = Convert.ToBase64String(memStream.ToArray());
-            //imgBar.Attributes.Add("src", "png");
-        }
-
-
-
-
-
     }
 }
