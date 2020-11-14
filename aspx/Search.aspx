@@ -31,7 +31,7 @@
                     <asp:HyperLinkField HeaderText="제목" DataNavigateUrlFields="Num" DataNavigateUrlFormatString="View.aspx?Num={0}"
                         DataTextField="Title" ItemStyle-Width="350px" />
                     <asp:BoundField HeaderText="작성자" DataField="Name" />
-                    <asp:BoundField HeaderText="작성일" DataField="PostDate" DataFormatString="{0:yyyy-mm-dd}" />
+                    <asp:BoundField HeaderText="작성일" DataField="PostDate" DataFormatString="{0:yyyy-MM-dd}" />
                     <asp:BoundField HeaderText="조회수" DataField="ReadCount" />
                 </Columns>
             </asp:GridView>

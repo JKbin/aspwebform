@@ -15,7 +15,11 @@
         }
 
         tbody tr td {
-           text-align: center;
+            text-align: center;
+        }
+
+        div div h3 {
+            margin-top: 50px;
         }
     </style>
     <div>
@@ -24,7 +28,7 @@
         </div>
 
         <section>
-            <asp:GridView ID="ctlBasicList" runat="server" AutoGenerateColumns="false" 
+            <asp:GridView ID="ctlBasicList" runat="server" AutoGenerateColumns="false"
                 CssClass="table table-bordered table-hover table-scripted">
                 <Columns>
                     <asp:BoundField HeaderText="번호" DataField="Num" />
@@ -32,7 +36,7 @@
                         DataNavigateUrlFormatString="View.aspx?Num={0}"
                         DataTextField="Title" ItemStyle-Width="350px" />
                     <asp:BoundField HeaderText="작성자" DataField="Name" />
-                    <asp:BoundField HeaderText="작성일" DataField="PostDate" DataFormatString="{0:yyyy-mm-dd}" />
+                    <asp:BoundField HeaderText="작성일" DataField="PostDate" DataFormatString="{0:yyyy-MM-dd}" HtmlEncode="false" />
                     <asp:BoundField HeaderText="조회수" DataField="ReadCount" />
                 </Columns>
             </asp:GridView>

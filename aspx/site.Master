@@ -46,10 +46,10 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
-                            <asp:LinkButton ID="lbtnmain" runat="server" Class="nav-link" OnClick="lbtnmain_Click">Main</asp:LinkButton>
+                            <%--<asp:LinkButton ID="lbtnmain" runat="server" Class="nav-link" OnClick="lbtnmain_Click">Main</asp:LinkButton>--%>
 
                             <asp:LinkButton ID="lbtnList" runat="server" Class="nav-link" OnClick="lbtnList_Click">List</asp:LinkButton>
-                            <asp:LinkButton ID="lbtncompany" runat="server" Class="nav-link" OnClick="lbtncompany_Click">Company</asp:LinkButton>
+                            <%--<asp:LinkButton ID="lbtncompany" runat="server" Class="nav-link" OnClick="lbtncompany_Click">Company</asp:LinkButton>--%>
                             <asp:LinkButton ID="lbtnboard" runat="server" class="nav-link" OnClick="lbtnboard_Click">Board</asp:LinkButton>
                             <asp:LinkButton ID="lbtnlogout" runat="server" class="nav-link" OnClick="lbtnlogout_Click">Logout</asp:LinkButton>
                         </ul>

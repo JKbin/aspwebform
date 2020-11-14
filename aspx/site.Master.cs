@@ -16,9 +16,8 @@ namespace ProjectWebForm.aspx
 
         protected void lbtnlogout_Click(object sender, EventArgs e)
         {
-            //Session.Remove("code");
+            Session.Remove("code");
             Response.Redirect("login.aspx");
-            Session.Clear();
         }
 
         protected void lbtnboard_Click(object sender, EventArgs e)
@@ -36,9 +35,9 @@ namespace ProjectWebForm.aspx
             Response.Redirect("ordlist.aspx");
         }
 
-        protected void lbtnmain_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("main.aspx");
-        }
+        //protected void lbtnmain_Click(object sender, EventArgs e)
+        //{
+        //    Response.Redirect("main.aspx");
+        //}
     }
 }

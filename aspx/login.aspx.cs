@@ -33,7 +33,7 @@ namespace ProjectWebForm.aspx
                 string query = @" SELECT COUNT(*) FROM CIS_BIZ_COMP WHERE CUSTOMER_CODE=@CUSTOMER_CODE AND CUSTOMER_PWD=@CUSTOMER_PWD ";
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@CUSTOMER_CODE", txtCustomerCode.Text);
-                cmd.Parameters.AddWithValue("CUSTOMER_PWD", txtCustomerPwd.Text);
+                cmd.Parameters.AddWithValue("@CUSTOMER_PWD", txtCustomerPwd.Text);
                 string output = cmd.ExecuteScalar().ToString();
 
                 // Login Success
@@ -41,7 +41,7 @@ namespace ProjectWebForm.aspx
                 {
                     // create a session
                     Session["Code"] = txtCustomerCode.Text;
-                    Response.Redirect("main.aspx");
+                    Response.Redirect("ordlist.aspx");
                 }
                 // Login Fail
                 else

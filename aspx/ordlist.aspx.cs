@@ -1,34 +1,54 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
-using System.Runtime.CompilerServices;
-using ProjectWebForm.aspx.Board;
-using System.Security.Authentication.ExtendedProtection;
-using System.Web.Services.Description;
-using QRCoder;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.Drawing.Text;
 using System.IO;
 
 namespace ProjectWebForm.aspx
 {
-    public partial class list : System.Web.UI.Page
+    public partial class list : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
-                DisplayData();
                 DataTable Table1 = new DataTable("MAT_ORD_DETAIL");
                 Session["MAT_ORD_DETAIL"] = Table1;
+                btnDisable();
+                DisplayLabel();
+                Label1.Visible = false;
             }
+        }
+
+        private void displaydata2()
+        {
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["connect"].ConnectionString))
+            {
+                conn.Open();
+                string query = @" SELECT ID,DETAIL_LINE,BUY_ORD_NO,QTY FROM WEB_PRT WHERE ID = @ID ";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlParameter paramCity = new SqlParameter("@ID", SqlDbType.VarChar, 20);
+                paramCity.Value = txtCode.Text;
+                cmd.Parameters.Add(paramCity);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataSet ds = new DataSet();
+                sda.Fill(ds, "WEB_PRT");
+                gridview2.DataSource = ds;
+                gridview2.DataBind();
+            }
+        }
+
+        private void btnDisable()
+        {
+            btnsubmit.Visible = false;
+            txtCode.Visible = false;
+            plBarCode.Visible = false;
         }
 
         private void DisplayData()
@@ -61,34 +81,23 @@ namespace ProjectWebForm.aspx
                                   HAVING MAT_ORD_NO  = ORD_DET.BUY_ORD_NO AND ORD_DETAIL_LINE = ORD_DET.DETAIL_LINE),0)>0
                                   ORDER BY BUY_ORD_NO ";
 
-                SqlCommand cmd = new SqlCommand(query, con);
-
-                SqlParameter paramCity = new SqlParameter("@CUSTOMER_CODE", SqlDbType.VarChar, 20);
-                paramCity.Value = Session["code"].ToString();
-                cmd.Parameters.Add(paramCity);
-
-                SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                DataSet ds = new DataSet();
-                sda.Fill(ds, "MAT_ORD_DETAIL");
-                gridview.DataSource = ds;
-                gridview.DataBind();
-            
-
-
-
-        }
-
-        /// <summary>
-        /// 페이징 처리
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void gridview_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            gridview.PageIndex = e.NewPageIndex;
+            SqlCommand cmd = new SqlCommand(query, con);
+            SqlParameter paramCity = new SqlParameter("@CUSTOMER_CODE", SqlDbType.VarChar, 20);
+            paramCity.Value = Session["code"].ToString();
+            cmd.Parameters.Add(paramCity);
+            SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            sda.Fill(ds, "MAT_ORD_DETAIL");
+            gridview.DataSource = ds;
             gridview.DataBind();
-            DisplayData();
+
+           
+
+
+
         }
+
+        
 
         protected void btnsubmit_Click(object sender, EventArgs e)
         {
@@ -127,25 +136,64 @@ namespace ProjectWebForm.aspx
 
                     SqlCommand cmd = new SqlCommand(query, conn);
 
-                    cmd.Parameters.AddWithValue("ID", temp);
-                    cmd.Parameters.AddWithValue("QTY", gridview.Rows[chk_index[i]].Cells[7].Text);
-                    cmd.Parameters.AddWithValue("DETAIL_LINE", gridview.Rows[chk_index[i]].Cells[8].Text);
-                    cmd.Parameters.AddWithValue("BUY_ORD_NO", gridview.Rows[chk_index[i]].Cells[9].Text);
-
+                    cmd.Parameters.AddWithValue("@ID", temp);
+                    cmd.Parameters.AddWithValue("@QTY", gridview.Rows[chk_index[i]].Cells[7].Text);
+                    cmd.Parameters.AddWithValue("@DETAIL_LINE", gridview.Rows[chk_index[i]].Cells[8].Text);
+                    cmd.Parameters.AddWithValue("@BUY_ORD_NO", gridview.Rows[chk_index[i]].Cells[9].Text);
                     cmd.Connection = conn;
                     cmd.ExecuteNonQuery();
                 }
-                DisplayData();
+            }
+            Generatebarcode();
+            DisplayData();
+            displaydata2();
+            Label1.Visible = true;
+        }
+
+        private void DisplayLabel()
+        {
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["connect"].ConnectionString))
+            {
+                conn.Open();
+                string query = @" SELECT CUSTOMER_NAME FROM CIS_BIZ_COMP WHERE CUSTOMER_CODE = @CUSTOMER_CODE ";
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                SqlParameter paramCity = new SqlParameter("@CUSTOMER_CODE", SqlDbType.VarChar, 20);
+                paramCity.Value = Session["code"].ToString();
+                cmd.Parameters.Add(paramCity);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                reader.Read();
+                lblCustomerNM.Text = reader["CUSTOMER_NAME"].ToString();
             }
         }
 
+        private void Generatebarcode()
+        {
+            string barcode = txtCode.Text;
+            System.Web.UI.WebControls.Image imgBarcode = new System.Web.UI.WebControls.Image();
+            using (Bitmap bitMap = new Bitmap(barcode.Length * 40, 80))
+            {
+                using (Graphics graphics = Graphics.FromImage(bitMap))
+                {
+                    Font oFont = new Font("IDAHC39M Code 39 Barcode", 16);
+                    PointF point = new PointF(2f, 2f);
+                    SolidBrush blackBrush = new SolidBrush(Color.Black);
+                    SolidBrush whitebrush = new SolidBrush(Color.White);
+                    graphics.FillRectangle(whitebrush, 0, 0, bitMap.Width, bitMap.Height);
+                    graphics.DrawString("*" + barcode + "*", oFont, blackBrush, point);
+                }
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    bitMap.Save(ms, ImageFormat.Png);
+                    byte[] byteImage = ms.ToArray();
 
-
-       
-
-
-
-
+                    Convert.ToBase64String(byteImage);
+                    imgBarcode.ImageUrl = "data:image/png;base64," + Convert.ToBase64String(byteImage);
+                }
+                plBarCode.Controls.Add(imgBarcode);
+            }
+        }
 
         private string Creating_TR_NO()
         {
@@ -228,37 +276,36 @@ namespace ProjectWebForm.aspx
             DisplayData();
         }
 
+       
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            DisplayData();
+            BtnDisplay();
+        }
+
+        private void BtnDisplay()
+        {
+            btnsubmit.Visible = true;
+            txtCode.Visible = true;
+            plBarCode.Visible = true;
+        }
+
         /// <summary>
-        /// make a barcode
+        ///  페이징 처리
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void btnGenerate_Click(object sender, EventArgs e)
+        protected void gridview_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            string barcode = txtCode.Text;
-            System.Web.UI.WebControls.Image imgBarcode = new System.Web.UI.WebControls.Image();
-            using (Bitmap bitMap = new Bitmap(barcode.Length * 40, 80))
-            {
-                using (Graphics graphics = Graphics.FromImage(bitMap))
-                {
-                    Font oFont = new Font("IDAHC39M Code 39 Barcode", 16);
-                    PointF point = new PointF(2f,2f);
-                    SolidBrush blackBrush = new SolidBrush(Color.Black);
-                    SolidBrush whitebrush = new SolidBrush(Color.White);
-                    graphics.FillRectangle(whitebrush, 0, 0, bitMap.Width, bitMap.Height);
-                    graphics.DrawString("*"+barcode+"*",oFont,blackBrush,point);
-                }
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    bitMap.Save(ms, ImageFormat.Png);
-                    byte[] byteImage = ms.ToArray();
+            gridview.PageIndex = e.NewPageIndex;
+            DisplayData();
+        }
 
-                    Convert.ToBase64String(byteImage);
-                    imgBarcode.ImageUrl = "data:image/png;base64," + Convert.ToBase64String(byteImage);
-                }
-                Image1.Controls.Add(imgBarcode);
-                //plBarCode.Controls.Add(imgBarcode);
-            }
+        protected void gridview2_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gridview2.PageIndex = e.NewPageIndex;
+            displaydata2();
         }
     }
 }

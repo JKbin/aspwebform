@@ -79,15 +79,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="aspx\board12.aspx" />
     <Content Include="aspx\Delete.aspx" />
     <Content Include="aspx\List.aspx" />
     <Content Include="aspx\Modify.aspx" />
+    <Content Include="aspx\test.aspx" />
     <Content Include="aspx\View.aspx" />
     <Content Include="aspx\Write.aspx" />
     <Content Include="aspx\company.aspx" />
     <Content Include="aspx\ordlist.aspx" />
-    <Content Include="aspx\listtest1.aspx" />
     <Content Include="aspx\login.aspx" />
     <Content Include="aspx\main.aspx" />
     <Content Include="aspx\Search.aspx" />
@@ -118,6 +117,7 @@
     <Content Include="css\login.css" />
     <Content Include="css\main.css" />
     <Content Include="css\Mlogin.css" />
+    <Content Include="css\ordlist.css" />
     <Content Include="css\style.css" />
     <Content Include="Error\Error.aspx" />
     <Content Include="fonts\fontawesome-webfont.svg" />
@@ -253,13 +253,6 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="aspx\board12.aspx.cs">
-      <DependentUpon>board12.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="aspx\board12.aspx.designer.cs">
-      <DependentUpon>board12.aspx</DependentUpon>
-    </Compile>
     <Compile Include="aspx\Delete.aspx.cs">
       <DependentUpon>Delete.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -280,6 +273,13 @@
     </Compile>
     <Compile Include="aspx\Modify.aspx.designer.cs">
       <DependentUpon>Modify.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="aspx\test.aspx.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="aspx\test.aspx.designer.cs">
+      <DependentUpon>test.aspx</DependentUpon>
     </Compile>
     <Compile Include="aspx\View.aspx.cs">
       <DependentUpon>View.aspx</DependentUpon>
@@ -308,13 +308,6 @@
     </Compile>
     <Compile Include="aspx\ordlist.aspx.designer.cs">
       <DependentUpon>ordlist.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="aspx\listtest1.aspx.cs">
-      <DependentUpon>listtest1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="aspx\listtest1.aspx.designer.cs">
-      <DependentUpon>listtest1.aspx</DependentUpon>
     </Compile>
     <Compile Include="aspx\login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>

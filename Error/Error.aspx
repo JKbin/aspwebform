@@ -44,7 +44,7 @@
                     <h1>404</h1>
                     <h2>Page not found</h2>
                     <p>I tried to catch some fog, but i missed it</p>
-                    <a href="login.aspx" class="home">Back to Home</a>
+                    <a href="../aspx/login.aspx" class="home">Back to Home</a>
                 </div>
 
                 <div class="copy-right text-center">

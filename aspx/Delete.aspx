@@ -34,7 +34,7 @@
 
         <section>
             <div>
-                <asp:Button ID="Button1" runat="server" Text="삭제" OnClientClick="return confirm('정말로 삭제하시겠습니까?');" OnClick="btnDelete_Click" CssClass="btn btn-primary" />
+                <asp:Button ID="Button1" runat="server" Text="삭제" OnClientClick ="return confirm('정말로 삭제하시겠습니까?');" OnClick="btnDelete_Click" CssClass="btn btn-primary"/>
                 <asp:Button ID="Button2" runat="server" Text="취소" OnClick="btnCancel_Click" CssClass="btn btn-secondary" />
                 <asp:Label ID="lblError" runat="server" ForeColor="Red" />
             </div>
